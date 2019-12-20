@@ -19,12 +19,12 @@ import firebase from '@react-native-firebase/app';
 //    4) The Firebase Auth service is now available to use here: `firebase.auth().currentUser`
 
 const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\nCmd+D or shake for dev menu XXX',
-  android: 'Double tap R on your keyboard to reload,\nShake or press menu button for dev menu YYY',
+  ios: 'Press Cmd+R to reload,\nCmd+D or shake for dev menu',
+  android: 'Double tap R on your keyboard to reload,\nShake or press menu button for dev menu',
 });
 
 const kalle = {
-  hello : 'Hello World'
+  hello : 'Hello My World'
 }
 
 

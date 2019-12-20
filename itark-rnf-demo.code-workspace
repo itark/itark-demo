@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "/Users/fredrikmoller/git2/itark-rnf-demo-upload"
 		}
 	]
 }

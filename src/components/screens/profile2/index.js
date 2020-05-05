@@ -20,9 +20,6 @@ import styled from 'styled-components';
 import FastImage from 'react-native-fast-image';
 import { TYPES, SOCIAL_BUTTONS } from './components/SOCIAL_BUTTONS';
 import LikeBeating from './components/LikeBeating';
-import Firebase from '../../../services/Firebase';
-//import Firebase2 from '../../../services/Firebase2';
-
 
 const PROFILE_IMAGE_URL = 'https://avatars0.githubusercontent.com/u/19726280?s=460&v=4';
 
@@ -272,7 +269,6 @@ const Profile2 = (): Object => (
               "kalle XX"
             }
           </MinaFans>
-          <Firebase/>
         </AboutMeWrapper>
       </Content>
     </ScrollView>

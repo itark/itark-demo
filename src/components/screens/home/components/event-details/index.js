@@ -33,7 +33,11 @@ class EventDetailsContainer extends Component<Props, {}> {
   }
 
   render() {
+    //console.log(' this.props', this.props)
+
     const { events } = this.props;
+
+    //console.log('EventDetailsContainer, events',events)
 
     return <EventDetails
       {...events}

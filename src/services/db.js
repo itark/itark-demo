@@ -7,5 +7,6 @@ import firestore from '@react-native-firebase/firestore';
 var db = firebase.firestore();
 
 
+
 export default db;
 

@@ -4,7 +4,13 @@
 			"path": "."
 		},
 		{
-			"path": "/Users/fredrikmoller/git2/itark-rnf-demo-upload"
+			"path": "/Users/fredrikmoller/tools-git/bon-appetit-server"
+		},
+		{
+			"path": "/Users/fredrikmoller/git2/itark-rnf-demo-datauploader"
+		},
+		{
+			"path": "/Users/fredrikmoller/tools-git/friendlyeats-web"
 		}
 	]
 }

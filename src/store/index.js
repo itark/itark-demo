@@ -12,7 +12,9 @@ const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
 const middleware = [sagaMiddleware];
 
 const createAppropriateStore = __DEV__ ? console.tron.createStore : createStore;
-const store = createAppropriateStore(reducers, applyMiddleware(...middleware));
+const store = createAppropriateStore(reducers,
+    applyMiddleware(...middleware),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 sagaMiddleware.run(sagas);
 

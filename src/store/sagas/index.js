@@ -18,6 +18,9 @@ import { requestDishDetail, requestAllDishes } from './dish';
 
 
 export default function* rootSaga() {
+
+  console.log('rootSaga');
+
   return yield all([
     takeLatest(
       NearbyRestaurantsTypes.GET_NEAR_BY_RESTAURANTS_REQUEST,

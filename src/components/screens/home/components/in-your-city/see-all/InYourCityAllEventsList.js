@@ -37,8 +37,8 @@ type Props = {
 };
 
 const InYourCityAllEventsList = ({ loading, events, error }: Props): Object => {
-  const hasEvents = events.length > 0;
 
+  const hasEvents = events.length > 0;
   const shouldShowBoringCityAlert = !hasEvents && !loading && !error;
   const shouldShowList = hasEvents && !loading && !error;
 

@@ -18,6 +18,7 @@ class SeeAllYouMightLikeContainer extends Component<Props, {}> {
     const { requestAllDishes } = this.props;
 
     requestAllDishes();
+
   }
 
   render() {

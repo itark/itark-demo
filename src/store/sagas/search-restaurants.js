@@ -4,6 +4,7 @@ import { Creators as SearchRestaurantsActions } from '../../store/ducks/search-r
 import parseParams from './utils/parseParams';
 import api from '../../services/api';
 
+//TODO ej rörd
 export function* requestSearchRestaurants(action) {
   try {
     const { userLocation, dishesTypes, maxDistance } = action.payload;

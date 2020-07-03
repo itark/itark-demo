@@ -2,6 +2,7 @@ import { call, put } from 'redux-saga/effects';
 import { Creators as RestaurantActions } from '../../store/ducks/restaurant';
 import api from '../../services/api';
 const Restaurants = require("../../store/firestore/restaurants");
+import CONSTANTS from '../../utils/CONSTANTS';
 
 export function* requestRestaurantDetail(action) {
   try {
@@ -12,26 +13,31 @@ export function* requestRestaurantDetail(action) {
       userLongitude: userLocation.longitude,
     };
 
-    // id2 = "5d978c622404105d46f0f4d4"
-    // console.log('restaurants, on id2:',id2)
-    // const response = yield call(api.get, `/restaurant/${id2}`, { headers });
-    // console.log('response',response)
 
-    const restaurant = yield Restaurants.getRestaurant(id);
-    //console.log('Restaurants.getRestaurant, restaurant',restaurant)
+    if (CONSTANTS.RNF) {
+      const restaurant = yield Restaurants.getRestaurant(id);
+      const menuDishes = yield Restaurants.getMenuDishes(id, 'Homemade');
+  
+      const data = {
+        restaurant: restaurant,
+        menu: menuDishes
+      }
+  
+      yield put(RestaurantActions.requestRestaurantDetailSuccess(data));
 
-    const menuDishes = yield Restaurants.getMenuDishes(id, 'Homemade');
-    //console.log('Restaurants.getRestaurant, menu',menuDishes)
 
-    const data = {
-      restaurant: restaurant,
-      menu: menuDishes
+    } else {
+      // id2 = "5d978c622404105d46f0f4d4"
+      // console.log('restaurants, on id2:',id2)
+      const response = yield call(api.get, `/restaurant/${id}`, { headers });
+      console.log('response',response)
+      
+      yield put(RestaurantActions.requestRestaurantDetailSuccess(response.data));
+
+
     }
 
-    console.log('data',data)
 
-    //yield put(RestaurantActions.requestRestaurantDetailSuccess(response.data));
-    yield put(RestaurantActions.requestRestaurantDetailSuccess(data));
   } catch (err) {
     console.log('err',err)
     yield put(RestaurantActions.requestRestaurantDetailFailure());

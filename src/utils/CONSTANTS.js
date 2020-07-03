@@ -18,6 +18,7 @@ const CONSTANTS = {
     latitude: -3.7899266,
     longitude: -38.588988,
   },
+  RNF: true
 };
 
 export default CONSTANTS;

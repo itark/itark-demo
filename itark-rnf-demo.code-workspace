@@ -4,19 +4,17 @@
 			"path": "."
 		},
 		{
-			"path": "/Users/fredrikmoller/tools-git/bon-appetit-server"
-		},
-		{
-			"path": "/Users/fredrikmoller/git2/itark-rnf-demo-datauploader"
-		},
-		{
-			"path": "/Users/fredrikmoller/tools-git/friendlyeats-web"
+			"path": "../itark-rnf-demo-datauploader"
 		},
 		{
 			"path": "../../tools-git/redux-saga-firebase"
 		},
 		{
 			"path": "../../tools-git/cat"
+		},
+		{
+			"path": "../../tools-git/bon-appetit-server"
 		}
-	]
+	],
+	"settings": {}
 }

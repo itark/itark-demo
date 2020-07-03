@@ -8,17 +8,23 @@ const Events = require("../../store/firestore/events");
 import ReduxSagaFirebase from 'redux-saga-firebase';
 import firebase from '@react-native-firebase/app';
 const rsf = new ReduxSagaFirebase(firebase)
-
 import { db } from '../../services/db';
+import api from '../../services/api';
+import CONSTANTS from '../../utils/CONSTANTS';
 
 export function* requestAllEvents() {
   try {
-    // const { data } = yield call(api.get, '/event');
-    // console.log('api events:',JSON.stringify(data))
-    const data = yield Events.getEvents();
-    //console.log('rnf  Events.getEvents() events:',JSON.stringify(data))
 
-    yield put(EventsActions.requestAllEventsSuccess(data));
+    if (CONSTANTS.RNF) {
+      const data = yield Events.getEvents();
+      console.log('rnf  Events.getEvents() events:',JSON.stringify(data))
+      yield put(EventsActions.requestAllEventsSuccess(data));
+
+    } else {
+       const { data } = yield call(api.get, '/event');
+       console.log('api events:',JSON.stringify(data))
+       yield put(EventsActions.requestAllEventsSuccess(data));
+    }
 
   } catch (err) {
     console.log('err',err)
@@ -29,26 +35,41 @@ export function* requestAllEvents() {
 export function* requestEventDetails(action) {
   try {
     const { id } = action.payload;
-    // const { data } = yield call(api.get, `/event/${id}`);  //Hämtar event OCH dess restaurants
-    // console.log('api event:',data)
 
-    const event = yield Events.getEvent(id)
-    //console.log('rnf, Events.getEvent(id):',event)
-    const restaurants = yield Events.getRestaurants() 
-    //console.log('rnf, restaurants:',restaurants) 
-  
-    var data  = {
-      restaurants:restaurants,
-      event: event
+    if (CONSTANTS.RNF) {
+      const event = yield Events.getEvent(id)
+      console.log('rnf, Events.getEvent(id):',event)
+      const restaurants = yield Events.getRestaurants() 
+      console.log('rnf, restaurants:',restaurants) 
+    
+      var data  = {
+        restaurants:restaurants,
+        event: event
+      }
+      console.log('rnf event:',data) 
+
+      yield put(
+        EventsActions.requestEventDetailsSuccess({
+          restaurants: data.restaurants,
+          details: data.event,
+        }),
+      );
+
+
+    } else {
+      const { data } = yield call(api.get, `/event/${id}`);  //Hämtar event OCH dess restaurants
+      console.log('api event:',data)
+
+      yield put(
+        EventsActions.requestEventDetailsSuccess({
+          restaurants: data.restaurants,
+          details: data.event,
+        }),
+      );
+
     }
-    //console.log('rnf event:',data) 
 
-    yield put(
-      EventsActions.requestEventDetailsSuccess({
-        restaurants: data.restaurants,
-        details: data.event,
-      }),
-    );
+
   } catch (err) {
     console.log('err in requestEventDetails()',err)
     yield put(EventsActions.requestEventDetailsFailure());

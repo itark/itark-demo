@@ -26,6 +26,9 @@ class DishDetailContainer extends Component<Props, {}> {
 
     this._subscriptionWillFocusEvent = navigation.addListener('willFocus', () => handleHiddenHeaderStyle(navigation, false, false));
 
+    console.log('::DishDetailContainer::, id',id)
+
+
     requestDishDetail(id);
   }
 
@@ -42,6 +45,8 @@ class DishDetailContainer extends Component<Props, {}> {
 
   render() {
     const { dish } = this.props;
+
+    console.log('::DishDetailContainer::, dish',dish)
 
     return <DishDetail
       {...dish}
